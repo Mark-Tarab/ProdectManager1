@@ -70,18 +70,12 @@ def register():
         if len(password) < 6:
             flash('Пароль має бути мінімум 6 символів')
             return redirect(url_for('register'))
-
-            # 🔹 перевірка на літеру
         if not any(char.isalpha() for char in password):
             flash('Пароль має містити літеру')
             return redirect(url_for('register'))
-
-            # 🔹 перевірка на цифру
         if not any(char.isdigit() for char in password):
             flash('Пароль має містити цифру')
             return redirect(url_for('register'))
-
-            # 🔹 перевірка на спецсимвол
         special_symbols = "!@#$%^&*"
         if not any(char in special_symbols for char in password):
             flash('Пароль має містити спецсимвол')
