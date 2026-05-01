@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Notes{% endblock %}
+{% block content %}
+
+<form method="POST" class="mb-3">
+<input name="title" placeholder="Title" class="form-control mb-2">
+<textarea name="content" placeholder="Content" class="form-control mb-2"></textarea>
+<input name="color" type="color" class="form-control mb-2">
+<button class="btn btn-primary">Add</button>
+</form>
+
+<div class="row">
+{% for n in notes %}
+<div class="col-md-4">
+<div class="card mb-3" style="background: {{n[3]}}">
+<div class="card-body">
+<h5>{{n[1]}}</h5>
+<p>{{n[2]}}</p>
+<a href="/pin/{{n[0]}}">Pin</a>
+<a href="/edit/{{n[0]}}">Edit</a>
+<a href="/delete/{{n[0]}}">Delete</a>
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}
