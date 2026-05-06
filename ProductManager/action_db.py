@@ -34,5 +34,13 @@ def product_exist(name) -> bool:
 def add_product(name: str, price: float, category: str):
     Product.create(name=name, price=price, category=category)
 
+def get_product_by_name(name):
+    return Product.get_or_none(Product.name == name)
 
-# видалення
+
+def update_product(name, price, category):
+    product = Product.get_or_none(Product.name == name)
+    if product:
+        product.price = price
+        product.category = category
+        product.save()

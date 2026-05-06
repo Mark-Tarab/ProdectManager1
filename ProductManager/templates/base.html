@@ -20,7 +20,13 @@
              width="30" height="30" class="d-inline-block align-text-top">
         <span class="navbar-brand h1">PRODUCT MANAGER</span>
       </a>
-
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-success">
+            {{ messages[0] }}
+        </div>
+        {% endif %}
+        {% endwith %}
       <div>
           <a href="{{ url_for('register') }}" class="btn btn-outline-light">Register</a>
           {% if session.get('company_name') %}

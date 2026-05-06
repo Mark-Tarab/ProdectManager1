@@ -127,4 +127,22 @@ def logout():
     flash('Ви вийшли з системи')
     return redirect(url_for('login'))
 
+@app.route('/edit/<name>', methods=['GET', 'POST'])
+def edit_product(name):
+    if not is_logged():
+        return redirect(url_for('login'))
+
+    product = get_product_by_name(name)
+
+    if request.method == 'POST':
+        price = float(request.form.get('price'))
+        category = request.form.get('category').lower()
+
+        update_product(name, price, category)
+
+        flash('Товар оновлено!')
+        return redirect(url_for('index'))
+
+    return render_template('edit.html', product=product)
+
 app.run(debug=True)

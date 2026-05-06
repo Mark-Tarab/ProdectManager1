@@ -64,6 +64,9 @@ Product Manager
               <td>{{ item['price'] }}</td>
               <td>{{ item['category'] }}</td>
               <td>
+                <a href="{{ url_for('edit_product', name=item['name']) }}" class="btn btn-warning btn-sm">
+                    Редагувати
+                </a>
 
                 <!-- loop.index - повертає порядковий номер ітерації (повторення) -->
                 <a href="{{ url_for('delete', index=loop.index0) }}">
