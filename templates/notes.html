@@ -3,26 +3,37 @@
 {% block content %}
 
 <form method="POST" class="mb-3">
-<input name="title" placeholder="Title" class="form-control mb-2">
-<textarea name="content" placeholder="Content" class="form-control mb-2"></textarea>
-<input name="color" type="color" class="form-control mb-2">
-<button class="btn btn-primary">Add</button>
+
+  <input name="title" placeholder="Title" class="form-control mb-2">
+    <textarea name="content" placeholder="Content" class="form-control mb-2"></textarea>
+    <div class="mb-2">
+        <button type="button" onclick="addEmoji('😊')">😊</button>
+        <button type="button" onclick="addEmoji('🔥')">🔥</button>
+        <button type="button" onclick="addEmoji('📌')">📌</button>
+        <button type="button" onclick="addEmoji('✔️')">✔️</button>
+    </div>
+    <input name="color" type="color" class="form-control mb-2">
+    <button class="btn btn-primary">Add</button>
 </form>
 
 <div class="row">
 {% for n in notes %}
-<div class="col-md-4">
-<div class="card mb-3" style="background: {{n[3]}}">
-<div class="card-body">
-<h5>{{n[1]}}</h5>
-<p>{{n[2]}}</p>
-<a href="/pin/{{n[0]}}">Pin</a>
-<a href="/edit/{{n[0]}}">Edit</a>
-<a href="/delete/{{n[0]}}">Delete</a>
-</div>
-</div>
-</div>
+  <div class="col-md-4">
+    <div class="card mb-3" style="background: {{n[3]}}">
+      <div class="card-body">
+        <h5>{{n[1]}}</h5>
+        <p>{{n[2]}}</p>
+        <a href="/pin/{{n[0]}}">Pin</a>
+        <a href="/edit/{{n[0]}}">Edit</a>
+        <a href="/delete/{{n[0]}}">Delete</a>
+      </div>
+    </div>
+  </div>
 {% endfor %}
-</div>
-
+<script>
+function addEmoji(e) {
+    const textarea = document.querySelector('textarea[name="content"]');
+    textarea.value += e;
+}
+</script>
 {% endblock %}
